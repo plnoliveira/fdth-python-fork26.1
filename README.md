@@ -6,7 +6,7 @@ A python port of the [fdth](https://github.com/jcfaria/fdth) R library.
 
 Este pacote foi desenvolvido como projeto para a disciplina  
 **"Probabilidade e Estatística"** (Ciência da Computação, UESC), nos semestres  
-de **2025.1 e 2025.2**. Vale ressaltar que o projeto já é anterior a isso,  
+de **2025.1, 2025.2 e 2026.1**. Vale ressaltar que o projeto já é anterior a isso,  
 porém incorporou a estruturação com foco em **orientação a objetos**  
 apenas em 2025.
 
@@ -114,15 +114,20 @@ mypy --strict --cache-fine-grained .
    - [Yuri Coutinho Costa](https://github.com/yuriccosta),  
    - [Maria Clara](https://github.com/MaryClaraSimoes).
 
-🔹 **Previous** version made by  
+🔹 **Previous 2025.1** version made by  
    - Gabriel Galdino,
    - Luciene Mª Torquato C. Batista,  
    - Stella Ribas,
    - Thainá Guimarães
    - Yohanan Santana.
   
-🔹 **Current** version made by  
+🔹 **Previous 2025.2** version made by  
    - Alex Amaral dos Santos,  
    - Isaque Silva Passos Ribeiro,  
    - Kaiala de Jesus Santos
    - Olinoedson Silva Sena.
+
+🔹 **Current** version made by  
+   - Ariel Mariano Vieira,  
+   - Eduardo Ferreira Diniz da Silva
+   - Pedro Lucas do Nascimento de Oliveira
