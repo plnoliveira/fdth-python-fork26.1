@@ -43,13 +43,13 @@ class Test(unittest.TestCase):
         }) # fmt: skip
         fd = fdt(df)
 
-        # expected types for each column
-        assert isinstance(fd.get_fdt("A"), CategoricalFDT)
-        assert isinstance(fd.get_fdt("B"), NumericalFDT)
+        # expected types for each column (columns accessed via indexing)
+        assert isinstance(fd["A"], CategoricalFDT)
+        assert isinstance(fd["B"], NumericalFDT)
 
-        # different ways to get the same FDT
-        assert fd.get_fdt("A") is fd.get_fdt(index=0)
-        assert fd.get_fdt("B") is fd.get_fdt(index=1)
+        # different ways to get the same FDT (by name vs. by position)
+        assert fd["A"] is list(fd.values())[0]
+        assert fd["B"] is list(fd.values())[1]
 
     def test_ndarray_fdt(self):
         x = np.array([
@@ -60,10 +60,12 @@ class Test(unittest.TestCase):
         ]) # fmt: skip
         fd = fdt(x)
 
-        assert len(fd.fdts_by_index) == 3
-        assert isinstance(fd.get_fdt(0), CategoricalFDT)
-        assert isinstance(fd.get_fdt(1), CategoricalFDT)
-        assert isinstance(fd.get_fdt(2), CategoricalFDT)
+        # a 2D ndarray yields one FDT per column (named V1, V2, V3)
+        fdt_list = list(fd.values())
+        assert len(fdt_list) == 3
+        assert isinstance(fdt_list[0], CategoricalFDT)
+        assert isinstance(fdt_list[1], CategoricalFDT)
+        assert isinstance(fdt_list[2], CategoricalFDT)
 
     def test_dataframe_fdt_mixed(self):
         df = pd.DataFrame({
@@ -71,5 +73,5 @@ class Test(unittest.TestCase):
             "bar": [1, 5, 3, 8, 10],
         })
         fd = fdt(df, sort=False)
-        assert isinstance(fd.get_fdt("foo"), CategoricalFDT)
-        assert isinstance(fd.get_fdt("bar"), NumericalFDT)
+        assert isinstance(fd["foo"], CategoricalFDT)
+        assert isinstance(fd["bar"], NumericalFDT)

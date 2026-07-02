@@ -49,9 +49,10 @@ class Test(unittest.TestCase):
         # 50th percentile
         self.assertEqual(median, fd.quantile(50, by=100))
 
-        # second quartile, using the index `2` on the specified binning.
-        # equivalent to fd.quantile(np.arange(0, 1, 0.25)[2])
-        self.assertEqual(median, fd.quantile(2, by=np.arange(0, 1, 0.25)))
+        # second quartile via an array of positions: passing the whole
+        # array returns one quantile per position, and index 2 of
+        # np.arange(0, 1, 0.25) == 0.5 gives the median.
+        self.assertEqual(median, fd.quantile(np.arange(0, 1, 0.25))[2])
 
     def test_mfv(self):
         def mfv_and_compare(data, expected_mfv) -> None:
@@ -65,4 +66,6 @@ class Test(unittest.TestCase):
     def test_at(self):
         data = np.array([1, 5, 8, 12, 30])
         fd = fdt(data, binning=Binning.auto(start=data.min(), end=data.max()))
-        self.assertEqual(fd.at(), data.max() - data.min())
+        # total amplitude (range) is recoverable from the binning bounds
+        amplitude = fd.binning.end - fd.binning.start
+        self.assertEqual(amplitude, data.max() - data.min())

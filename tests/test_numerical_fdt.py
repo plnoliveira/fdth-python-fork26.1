@@ -29,10 +29,11 @@ class Test(unittest.TestCase):
         var_value = fd.var()
         assert isinstance(var_value, float)
 
-        # testa o __repr__
+        # testa o __repr__ (a representação é a tabela formatada,
+        # cujo cabeçalho começa com "Class limits")
         repr_output = repr(fd)
         assert isinstance(repr_output, str)
-        assert "NumericalFDT" in repr_output
+        assert "Class limits" in repr_output
 
     def test_binnings(self):
         data = [1, 2, 6, 8, 10]
